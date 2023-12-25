@@ -1,20 +1,23 @@
 <?php
 include "common/connection.php";
-if("REQUEST_METHOD" == "POST"){
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullname = $_POST['fullname'];
     $email = $_POST['email'];
     $address = $_POST['address'];
-$sql = "UPDATE TABLE `users` SET `fullname`='$fullname',`email`='$email', `address`='$address'";
-$insert = $con->query($sql);
-if($insert){
-    echo "Profile updated.";
-}
-else{
-    echo "Update failed.";
-}
-header("Location: profile.php");
-}
-else{
+    
+    session_start();
+    $Uid = $_SESSION['Uid'];
+    $sql = "UPDATE `users` SET `fullname`='$fullname', `email`='$email', `address`='$address' WHERE `user_id`='$Uid'";
+    $update = $con->query($sql);
+
+    if ($update) {
+        echo "Profile updated.";
+        // header("Location: profile.php");
+    } else {
+        echo "Update failed.";
+    }
+} else {
     echo "Post failed.";
 }
 ?>

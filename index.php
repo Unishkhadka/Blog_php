@@ -19,9 +19,10 @@ include "common/authenticate.php";
     <?php
     $sql = "SELECT * from blogs";
     $result = $con->query($sql);
-
+    $user = $con->query("SELECT * from users");
     while ($row = $result->fetch_assoc()) {
-      echo "
+      while ($row_user = $user->fetch_assoc()) {
+        echo "
         <div class='row mb-4 justify-content-center'>
           <div class='col-md-9'>
             <div class='card'>
@@ -29,11 +30,15 @@ include "common/authenticate.php";
               <div class='card-body'>
                 <h5 class='card-title'>" . $row['title'] . "</h5>
                 <p class='card-text'>" . $row['description'] . "</p>
-                <a href='read.php?id=" . $row['blog_id'] . "' class='btn btn-primary'>Read</a>
+                <div class='d-flex justify-content-between'>
+                  <a href='read.php?id=" . $row['blog_id'] . "' class='btn btn-primary'>Read</a>
+                  <a href='#' class='btn btn-link text-end'>" . $row_user['fullname'] . "</a>
+                </div>
               </div>
             </div>
           </div>
         </div>";
+      }
     }
     ?>
   </div>

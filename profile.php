@@ -29,7 +29,7 @@ include "common/connection.php";
                         while($row=mysqli_fetch_assoc($result)){
                         echo "
                       <h4>".$row['fullname']."</h4>
-                      <p class='text-muted font-size-sm'>Bay Area, San Francisco, CA</p>
+                      <p class='text-muted font-size-sm'>".$row['address']."</p>
                       <button class='btn btn-primary'>Follow</button>
                       <button class='btn btn-outline-primary'>Message</button>";
                         }
