@@ -22,9 +22,14 @@ include "common/authenticate.php";
     $result = $con->query($sql);
 
     while ($row = $result->fetch_assoc()) {
+      $author_id = $row['user_id'];
+      $author_result = $con->query("SELECT * from users WHERE user_id=$author_id");
+      while ($author = $author_result->fetch_assoc()) {
       echo "
             <div class='container'>
               <h2 class='card-title'>" . $row['title'] . " :</h2>
+              <a href='author.php?id=".$author['user_id']."' class='btn-link'>" . $author['fullname'] . "</a>
+              <hr>
               <img src='...' class='img-fluid' alt=''>
               <h5 class='card-text'>" . $row['content'] . "</h5>
               </div>
@@ -47,18 +52,18 @@ include "common/authenticate.php";
       </div>
     </form>
   </div>
- 
-<div class="container">
-<hr>
-  <h4 class="pb-2">Comments</h4>
+
+  <div class="container">
+    <hr>
+    <h4 class="pb-2">Comments</h4>
     <?php
-      $sql = "SELECT * from comments where blog_id=$id";
-      $comments = $con->query($sql);
-      while($row = $comments->fetch_assoc()){
-        $user_id = $row['user_id'];
-        $user_result = $con->query("SELECT fullname from users WHERE user_id=$user_id");
-        $user = $user_result->fetch_assoc();
-        echo"
+    $sql = "SELECT * from comments where blog_id=$id";
+    $comments = $con->query($sql);
+    while ($row = $comments->fetch_assoc()) {
+      $user_id = $row['user_id'];
+      $user_result = $con->query("SELECT fullname from users WHERE user_id=$user_id");
+      $user = $user_result->fetch_assoc();
+      echo "
     <div class='row'>
       <div class='col-md-12 col-lg-10 col-xl-8'>
         <div class='card mb-3'>
@@ -70,8 +75,8 @@ include "common/authenticate.php";
             <div class='w-100'>
               <div class='d-flex justify-content-between align-items-center mb-3'>
                 <h6 class='fw-bold mb-0'>
-                  ".$user['fullname'].":
-                  <span class='text-primary ms-2'>".$row['content']."</span>
+                  " . $user['fullname'] . ":
+                  <span class='text-primary ms-2'>" . $row['content'] . "</span>
                 </h6>
                 <p class='mb-0'>2 days ago</p>
               </div>
@@ -92,10 +97,10 @@ include "common/authenticate.php";
       </div>
       </div>
       </div>";
-      }
+    }}
     ?>
 
-</div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
