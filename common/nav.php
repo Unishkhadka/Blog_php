@@ -1,16 +1,7 @@
-<!doctype html>
-<html lang="en">
+<?php include "header.php";?>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blogs</title>
-  <link rel="stylesheet" href="style/nav.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg bg-primary">
+<body style="font-family: 'Jost', sans-serif;">
+  <nav class="navbar navbar-expand-lg bg-primary " style="font-family: 'Jost', sans-serif;">
     <div class="container-fluid">
       <a class="navbar-brand ms-3" href="index.php">
         <h3>AURA</h3>
@@ -20,19 +11,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
+          <li class="nav-item ms-3">
             <a class="nav-link" aria-current="page" href="index.php">Dashboard</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ms-3">
             <a class="nav-link" href="#">My Blogs</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ms-3">
             <a class="nav-link" href="create.php">Create</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ms-3">
             <a class="nav-link" href="profile.php">Profile</a>
           </li>
-          <a class="btn btn-danger" href="logout.php">Logout</a>
+          <a href="login/logout.php"> <button class="btn btn-danger btn-sm ms-3">Logout</button>
+          </a>
         </ul>
       </div>
     </div>

@@ -2,20 +2,10 @@
 include "common/connection.php";
 include "common/nav.php";
 include "common/authenticate.php";
+include "common/header.php";
 ?>
-
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style/create.css">
-  <title>Blogs</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-<body>
   <div class="container-fluid px-4">
-    <form action="publish.php" method="post">
+    <form action="publish.php" method="post" enctype="multipart/form-data">
     <div class="pt-3 pb-3 px-4">
         <h4>Blog Title</h4>
       <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Enter your blog title" required>

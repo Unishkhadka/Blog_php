@@ -1,5 +1,5 @@
 <?php
-include "common/connection.php";
+include "C:/xampp/htdocs/Blog_php/common/connection.php";
 session_start();
 $Uid = isset($_SESSION['Uid']) ? $_SESSION['Uid'] : null;
 if (isset($Uid)) {

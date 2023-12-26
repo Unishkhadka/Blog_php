@@ -1,6 +1,6 @@
 <?php
-include "common/connection.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+include "C:/xampp/htdocs/Blog_php/common/connection.php";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_name = $_POST['name'];
     $email = $_POST['email'];
     $address = $_POST['address'];
