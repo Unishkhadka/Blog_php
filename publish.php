@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $category = $_POST['category'];
     $description = $_POST['description'];
-    $image = $_FILES['image']['name'];
+    // $image = $_FILES['image']['name'];
 
     // Initialize $uploadOk to 1
     $uploadOk = 1;
@@ -42,14 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Move the uploaded file to a permanent location
-        if ($uploadOk) {
+        if ($uploadOk=1) {
             move_uploaded_file($temp, $target_dir.$image);
         }
     }
 }
 
 
-$sql = "INSERT INTO `blogs`(`title`, `content`, `category`, `description`, `image_url`, `user_id`) VALUES ('$title, '$content', '$category', '$description', '$image', $Uid)";
+$sql = "INSERT INTO `blogs`(`title`, `content`, `category`, `description`, `user_id`) VALUES ('$title', '$content', '$category', '$description', $Uid)";
 
 $insert = $con->query($sql);
 
@@ -62,3 +62,4 @@ if ($insert) {
 $con->close();
 
 header("Location: index.php");
+?>

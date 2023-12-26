@@ -32,7 +32,7 @@ include "common/authenticate.php";
                 <p class='card-text'>" . $row['description'] . "</p>
                 <div class='d-flex justify-content-between'>
                   <a href='read.php?id=" . $row['blog_id'] . "' class='btn btn-primary'>Read</a>
-                  <a href='#' class='btn btn-link text-end'>" . $row_user['fullname'] . "</a>
+                  <a href='author.php?id=" . $row_user['user_id'] . "' class='btn btn-link text-end'>" . $row_user['fullname'] . "</a>
                 </div>
               </div>
             </div>

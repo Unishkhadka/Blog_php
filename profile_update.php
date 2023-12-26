@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($update) {
         echo "Profile updated.";
-        // header("Location: profile.php");
+        header("Location: profile.php");
     } else {
         echo "Update failed.";
     }
