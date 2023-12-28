@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $Uid = $row['user_id'];
                 session_start();
                 $_SESSION['Uid']=$Uid;
-                header("Location: index.php");
+                header("Location: /Blog_php/index.php");
             }
         }
         else{

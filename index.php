@@ -56,11 +56,12 @@ include "common/header.php";
         $blog_id = $row["blog_id"];
         $name = $author["fullname"];
         $image = $row['image_url'];
+        $date = $row['created_at'];
         if($author['profile_image']){
           $profile_image = $author['profile_image'];
           }
           else{
-              $profile_image = 'static/static_avatar.jpg';
+              $profile_image = '/Blog_php/static/static_avatar.jpg';
           }
         $time = time();
         echo "
@@ -70,11 +71,11 @@ include "common/header.php";
             <div class='card-body'>
               <div class='d-flex flex-start'>
                 <div class='img-circle vert'>
-                  <img src=$profile_image alt='$name'>
+                  <img src=/Blog_php/profile/$profile_image alt='$name'>
                 </div>
                 <div class='w-100'>
                   <div class='d-flex justify-content-between align-items-center mb-3'>
-                    <a  href='author.php?id=$author_id'><h6 class='fw-bold mb-0'>
+                    <a  href='/Blog_php/author.php?id=$author_id'><h6 class='fw-bold mb-0'>
                         " . $name . "
                       </h6></a>
                     <hr>
@@ -85,7 +86,7 @@ include "common/header.php";
               <p class='card-text card-description'>$desc</p>
               <div class='d-flex'>
                 <div>
-                  <small class='text-body-secondary'>9 mins</small>
+                  <small class='text-body-secondary'>Uploaded: $date</small>
                 </div>
                 <div class='ms-auto'>
                   <a type='button' href='read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>

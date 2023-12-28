@@ -36,7 +36,7 @@ include $root."/common/header.php";
     if ($author['profile_image']) {
       $profile_image = $author['profile_image'];
     } else {
-      $profile_image = 'static/static_avatar.jpg';
+      $profile_image = '/Blog_php/static/static_avatar.jpg';
     }
     echo "
         <div class='container'>
@@ -45,7 +45,7 @@ include $root."/common/header.php";
           <div class='img-circle vert'>
             <img src=$profile_image  alt='$author_name'>
           </div>
-          <a href='profile/author.php?id=" . $author_id . "' class='btn-link'>" . $author_name . "</a>
+          <a href='/Blog_php/profile/author.php?id=" . $author_id . "' class='btn-link'>" . $author_name . "</a>
           </div>
           <hr>
           <div class='text-center'>
@@ -84,6 +84,7 @@ include $root."/common/header.php";
     $user_id = $row['user_id'];
     $user_result = $con->query("SELECT fullname from users WHERE user_id=$user_id");
     $user = $user_result->fetch_assoc();
+    if(mysqli_num_rows($row)>0){
     echo "
       <div class='row'>
         <div class='col-md-12 col-lg-10 col-xl-8'>
@@ -91,7 +92,7 @@ include $root."/common/header.php";
             <div class='card-body'>
               <div class='d-flex flex-start'>
                 <img class='rounded-circle shadow-1-strong me-3'
-                  src='static/temp_avatar.jpg' width='40'
+                  src='/Blog_php/static/temp_avatar.jpg' width='40'
                   height='40' />
                 <div class='w-100'>
                   <div class='d-flex justify-content-between align-items-center mb-3'>
@@ -138,6 +139,11 @@ include $root."/common/header.php";
         </div>";
     }
 }
+else{
+  echo "No comments!"; 
+}
+  }
+
 
   ?>
 </div>

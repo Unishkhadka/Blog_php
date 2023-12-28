@@ -19,7 +19,7 @@ include "C:/xampp/htdocs/Blog_php/common/connection.php";
 
     if ($result) {
         echo "User inserted successfully!";
-        header("Location: login.php");
+        header("Location: /Blog_php/login/login.php");
     } else {
         echo "Error: " . $con->error;
     }}

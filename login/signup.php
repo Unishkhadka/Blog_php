@@ -14,7 +14,7 @@ if (isset($Uid)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Registration or Sign Up </title> 
-    <link rel="stylesheet" href="style/signup.css">
+    <link rel="stylesheet" href="/Blog_php/style/signup.css">
    </head>
 <body>
   <div class="wrapper">

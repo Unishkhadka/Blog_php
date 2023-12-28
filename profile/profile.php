@@ -5,7 +5,7 @@ include $root . "/common/authenticate.php";
 include $root . "/common/nav.php";
 include $root . "/common/header.php";
 ?>
-<link rel="stylesheet" href="style/circular_image.css">
+<link rel="stylesheet" href="/Blog_php/style/circular_image.css">
 
 <body>
   <div class="container mt-4">
@@ -114,9 +114,9 @@ include $root . "/common/header.php";
               ?>
             </div>
           </div>
-          <div class="album my-3 bg-body-tertiary">
+          <div class="album my-3 py-3 bg-body-tertiary">
             <div class="container">
-              <h1>Blogs:</h1>
+              <h1><?php echo $name?>'s Blogs:</h1>
               <div class="row row-cols-1 row-cols-sm-2  ">
                 <?php
                 $sql = "SELECT * from blogs where user_id=$Uid order by blog_id desc";
@@ -132,25 +132,25 @@ include $root . "/common/header.php";
                   $blog_id = $row["blog_id"];
                   $name = $author["fullname"];
                   $image = $row['image_url'];
+                  $date = $row['created_at'];
                   if ($author['profile_image']) {
                     $profile_image = $author['profile_image'];
                   } else {
-                    $profile_image = 'static/static_avatar.jpg';
+                    $profile_image = '?Blog_php/static/static_avatar.jpg';
                   }
-                  $time = time();
                   echo "
         <div class='col pt-4'>
           <div class='card shadow-sm'>
-            <img src='$image' class='card-img'>
+            <img src='/Blog_php/$image' class='card-img'>
             <div class='card-body'>
               <h4>$title</h4>
               <p class='card-text card-description'>$desc</p>
               <div class='d-flex'>
                 <div>
-                  <small class='text-body-secondary'>9 mins</small>
+                  <small class='text-body-secondary'>Uploaded: $date</small>
                 </div>
                 <div class='ms-auto'>
-                  <a type='button' href='read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
+                  <a type='button' href='/Blog_php/read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
                 </div>
               </div>
             </div>
@@ -164,4 +164,6 @@ include $root . "/common/header.php";
           </div>
         </div>
       </div>
+    </div>
+  </div>
       <?php include $root . "common/footer.php"; ?>

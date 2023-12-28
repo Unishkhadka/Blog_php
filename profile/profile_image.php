@@ -27,17 +27,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($profile_image && file_exists($profile_image)) {
         unlink($profile_image);
     }
-
+    header("Location: /Blog_php/profile/profile.php");
     echo "Profile image updated successfully.";
 }
 
 ?>
-<link rel="stylesheet" href="style/circular_image.css">
+<link rel="stylesheet" href="/Blog_php/style/circular_image.css">
 <div class="container text-center ">
     <?php
     if (!$profile_image) {
         echo "<h3 class='mt-5'>No Profile Image</h3>
-        <img src='static/static_avatar.jpg' class='rounded-circle p-1 bg-light' width='110px'>
+        <img src='/BLog_php/static/static_avatar.jpg' class='rounded-circle p-1 bg-light' width='110px'>
         
         <form action='' method='post' enctype='multipart/form-data' class='mt-4'>
             <div class='mb-3 d-flex justify-content-center'>
@@ -64,6 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
 </div>
 
+
+
 <?php 
-header("Location: profile.php")
+// 
 //include "common/footer.php"; ?>

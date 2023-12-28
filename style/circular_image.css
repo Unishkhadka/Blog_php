@@ -5,7 +5,7 @@
     overflow: hidden;
     margin-right: 10px;
   }
-  .img-circle-sm{
+  #img-circle-sm{
     border-radius: 50%;
     height: 25px;
     width: 25px;

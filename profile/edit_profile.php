@@ -5,7 +5,7 @@ include $root."/common/authenticate.php";
 include $root."/common/nav.php";
 include $root."/common/header.php";
 ?>
-<link rel="stylesheet" href="style/circular_image.css">
+<link rel="stylesheet" href="/Blog_php/style/circular_image.css">
 <div class="container my-4">
     <div class="main-body">
         <div class="row">
