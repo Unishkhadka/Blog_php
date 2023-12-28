@@ -1,8 +1,9 @@
 <?php
-include "common/nav.php";
-include "common/connection.php";
-include "common/authenticate.php";
-include "common/header.php";
+$root = "C:/xampp/htdocs/Blog_php/";
+include $root."/common/connection.php";
+include $root."/common/authenticate.php";
+include $root."/common/nav.php";
+include $root."/common/header.php";
 
 $Uid = $_SESSION['Uid'];
 $sql = "SELECT * FROM users WHERE user_id = $Uid";
@@ -63,4 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
 </div>
 
-<?php //include "common/footer.php"; ?>
+<?php 
+header("Location: profile.php")
+//include "common/footer.php"; ?>

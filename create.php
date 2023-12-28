@@ -13,11 +13,32 @@ include "common/header.php";
     </div>
     <div class="pb-3 px-4">
       <h4>Category</h4>
-      <input type="text" name="category" class="form-control" placeholder="For example: psychology" required>
+      <select class="form-select" aria-label="Default select example">
+      <?php
+        $sql = 'SELECT * FROM categories';
+        $result = $con->query($sql);
+
+        // Check if the query executed successfully
+        if ($result) {
+          // Fetch categories and populate the dropdown
+          while ($row = $result->fetch_assoc()) {
+            $id = $row['category_id'];
+            $category = $row['category'];
+            echo "<option value='$id'>$category</option>";
+          }
+
+          // Free the result set
+          $result->free();
+        } else {
+          // Handle the case where the query fails
+          echo "Error: " . $con->error;
+        }
+        ?>
+</select>
     </div>
     <div class="pb-3 px-4">
       <h4>Description</h4>
-      <input type="text" name="description" class="form-control" placeholder="A couple of sentences as a highlight." required>
+      <input type="text" name="description" class="form-control" placeholder="A couple of sentences as a highlight." maxlength="130" required>
     </div>
     <div class="mb-3 px-4">
       <h4>Content</h4>

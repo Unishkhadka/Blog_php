@@ -1,6 +1,9 @@
 <?php
-include "common/nav.php";
-include "common/connection.php";
+$root = "C:/xampp/htdocs/Blog_php/";
+include $root."/common/connection.php";
+include $root."/common/authenticate.php";
+include $root."/common/nav.php";
+include $root."/common/header.php";
 ?>
 <link rel="stylesheet" href="style/circular_image.css">
   <body>
@@ -13,7 +16,6 @@ include "common/connection.php";
                   <div class="d-flex flex-column align-items-center text-center">
                    
                         <?php
-                        session_start();
                         $Uid = $_SESSION['Uid'];
                         $sql = "SELECT * from users where user_id = $Uid";
                         $result = $con->query($sql);
@@ -26,7 +28,7 @@ include "common/connection.php";
                             else{
                                 $profile_image = 'static/static_avatar.jpg';
                             }
-                        echo "
+                                  echo "
                         <div class='img-circle vert'>
                         <img src=$profile_image  alt='$name'>
                         </div>
@@ -111,7 +113,6 @@ include "common/connection.php";
               ?>    
             </div>
           </div>
-
         </div>
     </div>
-<?php include "common/footer.php"; ?>
+<?php include $root."common/footer.php"; ?>

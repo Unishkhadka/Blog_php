@@ -1,4 +1,7 @@
-<?php include "header.php";?>
+<?php 
+$root = "C:/xampp/htdocs/Blog_php/";
+include "header.php";
+?>
 
 <body style="font-family: 'Jost', sans-serif; ">
   <nav class="navbar navbar-expand-lg bg-primary " style="font-family: 'Jost', sans-serif;">
@@ -14,9 +17,9 @@
           <li class="nav-item ms-3">
             <a class="nav-link" aria-current="page" href="index.php">Dashboard <i class="fa-solid fa-house"></i></a>
           </li>
-          <li class="nav-item ms-3">
+          <!-- <li class="nav-item ms-3">
             <a class="nav-link" href="#">My Blogs</a>
-          </li>
+          </li> -->
           <li class="nav-item ms-3">
             <a class="nav-link" href="create.php">Create</a>
           </li>

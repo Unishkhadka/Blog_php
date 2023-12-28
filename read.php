@@ -1,7 +1,9 @@
 <?php
-include "common/nav.php";
-include "common/authenticate.php";
-include "common/header.php";
+$root = "C:/xampp/htdocs/Blog_php/";
+include $root."/common/connection.php";
+include $root."/common/authenticate.php";
+include $root."/common/nav.php";
+include $root."/common/header.php";
 ?>
 <style>
   .img-circle {
@@ -43,7 +45,7 @@ include "common/header.php";
           <div class='img-circle vert'>
             <img src=$profile_image  alt='$author_name'>
           </div>
-          <a href='author.php?id=" . $author_id . "' class='btn-link'>" . $author_name . "</a>
+          <a href='profile/author.php?id=" . $author_id . "' class='btn-link'>" . $author_name . "</a>
           </div>
           <hr>
           <div class='text-center'>
@@ -78,12 +80,10 @@ include "common/header.php";
   <?php
   $sql = "SELECT * from comments where blog_id=$id";
   $comments = $con->query($sql);
-
   while ($row = $comments->fetch_assoc()) {
     $user_id = $row['user_id'];
     $user_result = $con->query("SELECT fullname from users WHERE user_id=$user_id");
     $user = $user_result->fetch_assoc();
-
     echo "
       <div class='row'>
         <div class='col-md-12 col-lg-10 col-xl-8'>
@@ -137,7 +137,8 @@ include "common/header.php";
           </div>
         </div>";
     }
-  }
+}
+
   ?>
 </div>
 
