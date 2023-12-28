@@ -3,6 +3,7 @@ include "common/nav.php";
 include "common/authenticate.php";
 include "common/header.php";
 ?>
+<link rel="stylesheet" href="style/circular_image.css">
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -15,23 +16,44 @@ include "common/header.php";
         $author_result = $con->query("SELECT * from users where user_id = $author_id");
         $author = $author_result->fetch_assoc();
         $title = $row['title'];
+        $content = $row['content'];
         $desc = $row['description'];
         $blog_id = $row["blog_id"];
         $name = $author["fullname"];
         $image = $row['image_url'];
+        if($author['profile_image']){
+          $profile_image = $author['profile_image'];
+          }
+          else{
+              $profile_image = 'static/static_avatar.jpg';
+          }
+        $time = time();
         echo "
         <div class='col'>
           <div class='card shadow-sm'>
             <img src='$image'>
             <div class='card-body'>
+            <div class='d-flex flex-start'>
+              <img class='rounded-circle shadow-1-strong me-3'
+                src='$profile_image'  width='30'
+                height='30' />
+            <div class='w-100'>
+              <div class='d-flex justify-content-between align-items-center mb-3'>
+              <a  href='author.php?id=$author_id'><h6 class='fw-bold mb-0'>
+                  " . $author['fullname'] . "
+                </h6></a>
+                  <hr>
+                  </div>
+                  </div>
+                  </div>
               <h4>$title</h4>
               <p class='card-text'>$desc</p>
               <div class='d-flex'>
                 <div>
                   <small class='text-body-secondary'>9 mins</small>
                 </div>
-                <div class='text-end'>
-                  <a type='button' href='read.php?id=$blog_id' class='btn btn-sm btn-link'>Read</a>
+                <div class='ms-auto'>
+                  <a type='button' href='read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
                 </div>
               </div>
             </div>
@@ -44,7 +66,6 @@ include "common/header.php";
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-
-</html>
+<?php
+include "common/footer.php";
+?>
