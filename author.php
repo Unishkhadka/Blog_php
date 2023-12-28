@@ -105,9 +105,54 @@ include $root . "/common/header.php";
                 </div>";
                             }
                             ?>
-                        
+                    <div class="album my-3 bg-body-tertiary">
+            <div class="container">
+              <h1>Blogs:</h1>
+              <div class="row row-cols-1 row-cols-sm-2  ">
+                <?php
+                $sql = "SELECT * from blogs where user_id=$auth_id order by blog_id desc";
+                $result = $con->query($sql);
+
+                while ($row = $result->fetch_assoc()) {
+                  $author_id = $row['user_id'];
+                  $author_result = $con->query("SELECT * from users where user_id = $author_id");
+                  $author = $author_result->fetch_assoc();
+                  $title = $row['title'];
+                  $content = $row['content'];
+                  $desc = $row['description'];
+                  $blog_id = $row["blog_id"];
+                  $name = $author["fullname"];
+                  $image = $row['image_url'];
+                  if ($author['profile_image']) {
+                    $profile_image = $author['profile_image'];
+                  } else {
+                    $profile_image = 'static/static_avatar.jpg';
+                  }
+                  $time = time();
+                  echo "
+        <div class='col pt-4'>
+          <div class='card shadow-sm'>
+            <img src='$image' class='card-img'>
+            <div class='card-body'>
+              <h4>$title</h4>
+              <p class='card-text card-description'>$desc</p>
+              <div class='d-flex'>
+                <div>
+                  <small class='text-body-secondary'>9 mins</small>
+                </div>
+                <div class='ms-auto'>
+                  <a type='button' href='read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+        ";
+                }
+                ?>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 <?php include 'common/footer.php'; ?>
