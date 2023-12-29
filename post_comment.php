@@ -14,9 +14,10 @@ if($insert){
 else{
     echo "Comment failed";
 }   
-header("Location: index.php");
+
 }
 else{
     echo "Post failed.";
 }
+header("Location: read.php?id=$blog_id");
 ?>

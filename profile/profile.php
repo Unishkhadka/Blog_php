@@ -116,7 +116,7 @@ include $root . "/common/header.php";
           </div>
           <div class="album my-3 py-3 bg-body-tertiary">
             <div class="container">
-              <h1><?php echo $name?>'s Blogs:</h1>
+              <h1>My Blogs:</h1>
               <div class="row row-cols-1 row-cols-sm-2  ">
                 <?php
                 $sql = "SELECT * from blogs where user_id=$Uid order by blog_id desc";
@@ -136,7 +136,7 @@ include $root . "/common/header.php";
                   if ($author['profile_image']) {
                     $profile_image = $author['profile_image'];
                   } else {
-                    $profile_image = '?Blog_php/static/static_avatar.jpg';
+                    $profile_image = '/Blog_php/static/static_avatar.jpg';
                   }
                   echo "
         <div class='col pt-4'>
@@ -150,6 +150,10 @@ include $root . "/common/header.php";
                   <small class='text-body-secondary'>Uploaded: $date</small>
                 </div>
                 <div class='ms-auto'>
+                <a type='button' href='/Blog_php/delete_blog.php?id=$blog_id' class='btn btn-sm btn-link'>Delete <i class=fa-solid fa-trash></i></a>
+                
+                <a type='button' href='/Blog_php/edit_blog.php?id=$blog_id' class='btn btn-sm btn-link'>Edit <i class='fa-solid fa-pen-to-square'></i></a>
+                
                   <a type='button' href='/Blog_php/read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
                 </div>
               </div>

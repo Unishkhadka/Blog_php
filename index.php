@@ -67,7 +67,7 @@ include "common/header.php";
         echo "
         <div class='col'>
           <div class='card shadow-sm'>
-            <img src='$image' class='card-img'>
+            <img src='/Blog_php/$image' class='card-img'>
             <div class='card-body'>
               <div class='d-flex flex-start'>
                 <div class='img-circle vert'>
@@ -75,7 +75,7 @@ include "common/header.php";
                 </div>
                 <div class='w-100'>
                   <div class='d-flex justify-content-between align-items-center mb-3'>
-                    <a  href='/Blog_php/author.php?id=$author_id'><h6 class='fw-bold mb-0'>
+                    <a  href='/Blog_php/profile/author.php?id=$author_id'><h6 class='fw-bold mb-0'>
                         " . $name . "
                       </h6></a>
                     <hr>

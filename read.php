@@ -1,22 +1,23 @@
 <?php
 $root = "C:/xampp/htdocs/Blog_php/";
-include $root."/common/connection.php";
-include $root."/common/authenticate.php";
-include $root."/common/nav.php";
-include $root."/common/header.php";
+include $root . "/common/connection.php";
+include $root . "/common/authenticate.php";
+include $root . "/common/nav.php";
+include $root . "/common/header.php";
 ?>
 <style>
   .img-circle {
     border-radius: 50%;
-    height: 25px;
-    width: 25px;
+    height: 40px; /* Adjust the height as needed */
+    width: 40px; /* Adjust the width as needed */
     overflow: hidden;
     margin-right: 10px;
   }
 
   .img-circle img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 </style>
 <div class="container mt-5">
@@ -40,10 +41,10 @@ include $root."/common/header.php";
     }
     echo "
         <div class='container'>
-          <h2 class='card-title'>" . $title . " :</h2>
+          <h2 class='card-title'>" . $title . "</h2>
           <div class='d-flex flex-start'>
-          <div class='img-circle vert'>
-            <img src=$profile_image  alt='$author_name'>
+          <div class='img-circle'>
+            <img src=/Blog_php/profile/$profile_image  alt='$author_name'>
           </div>
           <a href='/Blog_php/profile/author.php?id=" . $author_id . "' class='btn-link'>" . $author_name . "</a>
           </div>
@@ -82,18 +83,24 @@ include $root."/common/header.php";
   $comments = $con->query($sql);
   while ($row = $comments->fetch_assoc()) {
     $user_id = $row['user_id'];
-    $user_result = $con->query("SELECT fullname from users WHERE user_id=$user_id");
+    $user_result = $con->query("SELECT * from users WHERE user_id=$user_id");
     $user = $user_result->fetch_assoc();
-    if(mysqli_num_rows($row)>0){
-    echo "
+    if ($user['profile_image']) {
+      $image = 'profile/' . $user['profile_image'];
+    } else {
+      $image = '/Blog_php/static/static_avatar.jpg';
+    }
+
+    if (mysqli_num_rows($comments) > 0) {
+      echo "
       <div class='row'>
         <div class='col-md-12 col-lg-10 col-xl-8'>
           <div class='card mb-3'>
             <div class='card-body'>
-              <div class='d-flex flex-start'>
-                <img class='rounded-circle shadow-1-strong me-3'
-                  src='/Blog_php/static/temp_avatar.jpg' width='40'
-                  height='40' />
+            <div class='d-flex flex-start'>
+            <div class='img-circle'>
+              <img src='/Blog_php/$image' alt='$user[fullname]'>
+            </div>
                 <div class='w-100'>
                   <div class='d-flex justify-content-between align-items-center mb-3'>
                     <h6 class='fw-bold mb-0'>
@@ -104,9 +111,9 @@ include $root."/common/header.php";
                   </div>
                   <div class='d-flex justify-content-between align-items-center'>
                     <p class='small mb-0' style='color: #aaa;'>";
-    $Uid = $_SESSION['Uid'];
-    if ($Uid == $user_id) {
-      echo "
+      $Uid = $_SESSION['Uid'];
+      if ($Uid == $user_id) {
+        echo "
                         <a href='#!' class='link-grey'>Delete<i class='fa-solid fa-trash'></i></a> •
                         <a href='#!' class='link-grey'>Translate</a>
                       </p>
@@ -121,8 +128,8 @@ include $root."/common/header.php";
             </div>
           </div>
         </div>";
-    } else {
-      echo "
+      } else {
+        echo "
     <a href='#!' class='link-grey'>Like<i class='fa-regular fa-heart'></i></i></a> •
                         <a href='#!' class='link-grey'>Translate</a>
                       </p>
@@ -137,11 +144,10 @@ include $root."/common/header.php";
             </div>
           </div>
         </div>";
+      }
+    } else {
+      echo "<h1>No comments!</h1>";
     }
-}
-else{
-  echo "No comments!"; 
-}
   }
 
 

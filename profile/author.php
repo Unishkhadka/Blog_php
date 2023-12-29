@@ -107,7 +107,7 @@ include $root . "/common/header.php";
             ?>
             <div class="album my-3 bg-body-tertiary">
               <div class="container">
-                <h1>Blogs:</h1>
+                <h1><?php echo $name?>'s Blogs:</h1>
                 <div class="row row-cols-1 row-cols-sm-2  ">
                   <?php
                   $sql = "SELECT * from blogs where user_id=$auth_id order by blog_id desc";
@@ -126,7 +126,7 @@ include $root . "/common/header.php";
                     if ($author['profile_image']) {
                       $profile_image = $author['profile_image'];
                     } else {
-                      $profile_image = 'static/static_avatar.jpg';
+                      $profile_image = '/Blog_php/static/static_avatar.jpg';
                     }
                     $time = time();
                     echo "
@@ -141,7 +141,7 @@ include $root . "/common/header.php";
                   <small class='text-body-secondary'>9 mins</small>
                 </div>
                 <div class='ms-auto'>
-                  <a type='button' href='read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
+                  <a type='button' href='/Blog_php/read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
                 </div>
               </div>
             </div>

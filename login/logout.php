@@ -2,5 +2,5 @@
 include "common/connection.php";
 session_start();
 session_destroy();
-header("Location: login.php");
+header("Location: /Blog_php/login/login.php");
 ?>
