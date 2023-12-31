@@ -8,15 +8,15 @@ include $root . "/common/header.php";
 <link rel="stylesheet" href="/Blog_php/style/circular_image.css">
 
 <body>
-  <div class="container mt-4">
-    <div class="main-body">
-      <div class="row gutters-sm">
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex flex-column align-items-center text-center">
+    <div class="container mt-4">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
 
-                <?php
+                                <?php
                 $Uid = $_SESSION['Uid'];
                 $sql = "SELECT * from users where user_id = $Uid";
                 $result = $con->query($sql);
@@ -39,42 +39,42 @@ include $root . "/common/header.php";
                       <button class='btn btn-outline-primary'>Message</button>";
                 }
                 ?>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa-solid fa-globe"></i> Website</h6>
+                            <span class="text-secondary">bootdey</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa-brands fa-github"></i> Github</h6>
+                            <span class="text-secondary">bootdey</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa-brands fa-square-twitter"></i> @bootdey</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa-brands fa-square-instagram "></i> Instagram</h6>
+                            <span class="text-secondary">bootdey</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fa-brands fa-facebook"></i> Facebook</h6>
+                            <span class="text-secondary">bootdey</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="card mt-3">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              <h6 class="mb-0"><i class="fa-solid fa-globe"></i> Website</h6>
-              <span class="text-secondary">bootdey</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              <h6 class="mb-0"><i class="fa-brands fa-github"></i> Github</h6>
-              <span class="text-secondary">bootdey</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              <h6 class="mb-0"><i class="fa-brands fa-square-twitter"></i> @bootdey</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              <h6 class="mb-0"><i class="fa-brands fa-square-instagram "></i> Instagram</h6>
-              <span class="text-secondary">bootdey</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              <h6 class="mb-0"><i class="fa-brands fa-facebook"></i> Facebook</h6>
-              <span class="text-secondary">bootdey</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="card mb-3">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Full Name</h6>
-              </div>
-              <?php
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Full Name</h6>
+                            </div>
+                            <?php
               $Uid = $_SESSION['Uid'];
               $sql = "SELECT * from users where user_id = $Uid";
               $result = $con->query($sql);
@@ -112,13 +112,13 @@ include $root . "/common/header.php";
               </div>";
               }
               ?>
-            </div>
-          </div>
-          <div class="album my-3 py-3 bg-body-tertiary">
-            <div class="container">
-              <h1>My Blogs:</h1>
-              <div class="row row-cols-1 row-cols-sm-2  ">
-                <?php
+                        </div>
+                    </div>
+                    <div class="album my-3 py-3 bg-body-tertiary">
+                        <div class="container">
+                            <h1>My Blogs:</h1>
+                            <div class="row row-cols-1 row-cols-sm-2  ">
+                                <?php
                 $sql = "SELECT * from blogs where user_id=$Uid order by blog_id desc";
                 $result = $con->query($sql);
 
@@ -163,11 +163,11 @@ include $root . "/common/header.php";
         ";
                 }
                 ?>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-      <?php include $root . "common/footer.php"; ?>
+    <?php include $root . "common/footer.php"; ?>

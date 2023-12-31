@@ -7,13 +7,13 @@ include $root . "/common/header.php";
 ?>
 <link rel="stylesheet" href="/Blog_php/style/circular_image.css">
 <div class="container mt-4">
-  <div class="main-body">
-    <div class="row gutters-sm">
-      <div class="col-md-4 mb-3">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex flex-column align-items-center text-center">
-              <?php
+    <div class="main-body">
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <?php
               $auth_id = $_GET['id'];
               $sql = "SELECT * from users where user_id = $auth_id";
               $result = $con->query($sql);
@@ -36,42 +36,42 @@ include $root . "/common/header.php";
                                   <button class='btn btn-outline-primary'>Message</button>";
               }
               ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fa-solid fa-globe"></i> Website</h6>
+                        <span class="text-secondary">bootdey</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fa-brands fa-github"></i> Github</h6>
+                        <span class="text-secondary">bootdey</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fa-brands fa-square-twitter"></i> @bootdey</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fa-brands fa-square-instagram "></i> Instagram</h6>
+                        <span class="text-secondary">bootdey</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fa-brands fa-facebook"></i> Facebook</h6>
+                        <span class="text-secondary">bootdey</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="card mt-3">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-            <h6 class="mb-0"><i class="fa-solid fa-globe"></i> Website</h6>
-            <span class="text-secondary">bootdey</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-            <h6 class="mb-0"><i class="fa-brands fa-github"></i> Github</h6>
-            <span class="text-secondary">bootdey</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-            <h6 class="mb-0"><i class="fa-brands fa-square-twitter"></i> @bootdey</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-            <h6 class="mb-0"><i class="fa-brands fa-square-instagram "></i> Instagram</h6>
-            <span class="text-secondary">bootdey</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-            <h6 class="mb-0"><i class="fa-brands fa-facebook"></i> Facebook</h6>
-            <span class="text-secondary">bootdey</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div class="card mb-3">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Full Name</h6>
-            </div>
-            <?php
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <?php
             $auth_id = $_GET['id'];
             $sql = "SELECT * from users where user_id = $auth_id";
             $result = $con->query($sql);
@@ -105,11 +105,11 @@ include $root . "/common/header.php";
                 </div>";
             }
             ?>
-            <div class="album my-3 bg-body-tertiary">
-              <div class="container">
-                <h1><?php echo $name?>'s Blogs:</h1>
-                <div class="row row-cols-1 row-cols-sm-2  ">
-                  <?php
+                        <div class="album my-3 py-3 bg-body-tertiary">
+                            <div class="container">
+                                <h1><?php echo $name?>'s Blogs:</h1>
+                                <div class="row row-cols-1 row-cols-sm-2  ">
+                                    <?php
                   $sql = "SELECT * from blogs where user_id=$auth_id order by blog_id desc";
                   $result = $con->query($sql);
 
@@ -121,6 +121,7 @@ include $root . "/common/header.php";
                     $content = $row['content'];
                     $desc = $row['description'];
                     $blog_id = $row["blog_id"];
+                    $date = $row['created_at'];
                     $name = $author["fullname"];
                     $image = $row['image_url'];
                     if ($author['profile_image']) {
@@ -128,7 +129,6 @@ include $root . "/common/header.php";
                     } else {
                       $profile_image = '/Blog_php/static/static_avatar.jpg';
                     }
-                    $time = time();
                     echo "
         <div class='col pt-4'>
           <div class='card shadow-sm'>
@@ -137,9 +137,9 @@ include $root . "/common/header.php";
               <h4>$title</h4>
               <p class='card-text card-description'>$desc</p>
               <div class='d-flex'>
-                <div>
-                  <small class='text-body-secondary'>9 mins</small>
-                </div>
+              <div>
+              <small class='text-body-secondary'>Uploaded: $date</small>
+            </div>
                 <div class='ms-auto'>
                   <a type='button' href='/Blog_php/read.php?id=$blog_id' class='btn btn-sm btn-link'>Read <i class='fa-solid fa-arrow-right'></i></a>
                 </div>
@@ -150,13 +150,13 @@ include $root . "/common/header.php";
         ";
                   }
                   ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
-        <?php include $root.'common/footer.php'; ?>
+<?php include $root.'common/footer.php'; ?>
