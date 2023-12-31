@@ -40,12 +40,12 @@ include "common/header.php";
     }
 </style>
 <div class="album py-5 bg-body-tertiary">
-  <div class="container">
+  <div class="container ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <?php
       $sql = "SELECT * from blogs order by blog_id desc";
       $result = $con->query($sql);
-
+      if(mysqli_num_rows($result)>0){
       while ($row = $result->fetch_assoc()) {
         $author_id = $row['user_id'];
         $author_result = $con->query("SELECT * from users where user_id = $author_id");
@@ -96,6 +96,11 @@ include "common/header.php";
           </div>
         </div>
         ";
+      }}
+      else{
+        echo "<div class='container vh-100 text-center'>
+        <h1>No Blogs <i class='fa-solid fa-circle-exclamation'></i></h1>
+        </div>";
       }
       ?>
     </div>

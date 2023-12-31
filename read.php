@@ -5,7 +5,7 @@ include $root . "/common/authenticate.php";
 include $root . "/common/nav.php";
 ?>
 <style>
-  .img-circle {
+.img-circle {
     border-radius: 50%;
     height: 25px;
     /* Adjust the height as needed */
@@ -13,9 +13,9 @@ include $root . "/common/nav.php";
     /* Adjust the width as needed */
     overflow: hidden;
     margin-right: 10px;
-  }
+}
 
-  .img-circle-comment {
+.img-circle-comment {
     border-radius: 50%;
     height: 40px;
     /* Adjust the height as needed */
@@ -24,18 +24,18 @@ include $root . "/common/nav.php";
     position: relative;
     overflow: hidden;
     margin-right: 10px;
-  }
+}
 
-  .img-circle img,
-  .img-circle-comment img {
+.img-circle img,
+.img-circle-comment img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+}
 </style>
 <div class="container mt-5">
-  <?php
+    <?php
   $id = $_GET['id'];
   $sql = "SELECT * from blogs where blog_id=$id";
   $result = $con->query($sql);
@@ -75,26 +75,27 @@ include $root . "/common/nav.php";
 </div>
 
 <div class='container mt-4'>
-  <form action='post_comment.php' method='post'>
-    <div class='mb-3'>
-      <label for='exampleFormControlTextarea1' class='form-label'>
-        <h5>Comment:</h5>
-      </label>
-      <textarea class='form-control' name='comment' id='exampleFormControlTextarea1' rows='2'></textarea>
-    </div>
-    <div class='text-end'>
-      <input type='hidden' name='blog_id' value='<?php echo $id; ?>'>
-      <button type='submit' class='btn btn-primary'>Comment</button>
-    </div>
-  </form>
+    <form action='post_comment.php' method='post'>
+        <div class='mb-3'>
+            <label for='exampleFormControlTextarea1' class='form-label'>
+                <h5>Comment:</h5>
+            </label>
+            <textarea class='form-control' name='comment' id='exampleFormControlTextarea1' rows='2'></textarea>
+        </div>
+        <div class='text-end'>
+            <input type='hidden' name='blog_id' value='<?php echo $id; ?>'>
+            <button type='submit' class='btn btn-primary'>Comment</button>
+        </div>
+    </form>
 </div>
 
 <div class="container mb-4">
-  <hr>
-  <h4 class="pb-2">Comments</h4>
-  <?php
+    <hr>
+    <h4 class="pb-2">Comments</h4>
+    <?php
   $sql = "SELECT * from comments where blog_id=$id";
   $comments = $con->query($sql);
+  if (mysqli_num_rows($comments) > 0) {
   while ($row = $comments->fetch_assoc()) {
     $comment_id = $row['comment_id'];
     $comment = $row['content'];
@@ -106,8 +107,6 @@ include $root . "/common/nav.php";
     } else {
       $image = '/Blog_php/static/static_avatar.jpg';
     }
-
-    if (mysqli_num_rows($comments) > 0) {
       echo "
       <div class='row'>
         <div class='col-md-12 col-lg-10 col-xl-8'>
@@ -150,7 +149,8 @@ include $root . "/common/nav.php";
                               </div>
                               <div class='modal-footer'>
                               <div class='text-end'>
-                                <input type='hidden' name='comment_id' value='<?php echo $comment_id; ?>'
+                              <input type='hidden' name='blog_id' value=$id>
+                              <input type='hidden' name='comment_id' value=$comment_id>
                                 <button type='submit' class='btn btn-primary'>Comment</button>
                                 </div>
                               </div>
@@ -167,10 +167,11 @@ include $root . "/common/nav.php";
               </div>
             </div>
           </div>
-        </div>";
+          </div>
+        ";
       } else {
         echo "
-    <a href='#!' class='link-grey'><i class='fa-regular fa-heart'></i></i></a> •
+    <a href='like.php?comment_id=$comment_id' name='like' class='link-grey'><i class='fa-regular fa-heart'></i></i></a> •
                         <a href='#!' class='link-grey'>Translate</a>
                       </p>
                     </div>
@@ -179,13 +180,15 @@ include $root . "/common/nav.php";
               </div>
             </div>
           </div>
-        </div>";
+        ";
       }
-    } else {
-      echo "<h1>No comments!</h1>";
+    }} else {
+      echo "<h1>No comments!</h1>
+      <hr>  ";
     }
-  }
   ?>
-  <?php include "common/footer.php";
+</div>
+</div>
+<?php include "common/footer.php";
 
   ?>
