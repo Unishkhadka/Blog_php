@@ -3,18 +3,32 @@ $root = "C:/xampp/htdocs/Blog_php/";
 include $root . "/common/connection.php";
 include $root . "/common/authenticate.php";
 include $root . "/common/nav.php";
-include $root . "/common/header.php";
 ?>
 <style>
   .img-circle {
     border-radius: 50%;
-    height: 40px; /* Adjust the height as needed */
-    width: 40px; /* Adjust the width as needed */
+    height: 25px;
+    /* Adjust the height as needed */
+    width: 25px;
+    /* Adjust the width as needed */
     overflow: hidden;
     margin-right: 10px;
   }
 
-  .img-circle img {
+  .img-circle-comment {
+    border-radius: 50%;
+    height: 40px;
+    /* Adjust the height as needed */
+    width: 40px;
+    /* Adjust the width as needed */
+    position: relative;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+
+  .img-circle img,
+  .img-circle-comment img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -82,6 +96,8 @@ include $root . "/common/header.php";
   $sql = "SELECT * from comments where blog_id=$id";
   $comments = $con->query($sql);
   while ($row = $comments->fetch_assoc()) {
+    $comment_id = $row['comment_id'];
+    $comment = $row['content'];
     $user_id = $row['user_id'];
     $user_result = $con->query("SELECT * from users WHERE user_id=$user_id");
     $user = $user_result->fetch_assoc();
@@ -98,28 +114,52 @@ include $root . "/common/header.php";
           <div class='card mb-3'>
             <div class='card-body'>
             <div class='d-flex flex-start'>
-            <div class='img-circle'>
+            <div class='img-circle-comment'>
               <img src='/Blog_php/$image' alt='$user[fullname]'>
             </div>
                 <div class='w-100'>
                   <div class='d-flex justify-content-between align-items-center mb-3'>
                     <h6 class='fw-bold mb-0'>
                       " . $user['fullname'] . ":
-                      <span class='text-primary ms-2'>" . $row['content'] . "</span>
+                      <span class='text-primary ms-2'>" . $comment . "</span>
                     </h6>
-                    <p class='mb-0'>2 days ago</p>
                   </div>
                   <div class='d-flex justify-content-between align-items-center'>
                     <p class='small mb-0' style='color: #aaa;'>";
       $Uid = $_SESSION['Uid'];
       if ($Uid == $user_id) {
         echo "
-                        <a href='#!' class='link-grey'>Delete<i class='fa-solid fa-trash'></i></a> •
-                        <a href='#!' class='link-grey'>Translate</a>
-                      </p>
-                      <div class='d-flex flex-row'>
-                        <i class='fas fa-star text-warning me-2'></i>
-                        <i class='far fa-check-circle' style='color: #aaa;'></i>
+                        <a href='/Blog_php/delete_comment.php?id=$comment_id && blog_id=$id' class='link-grey'>Delete<i class='fa-solid fa-trash'></i></a> •
+                        <!-- Button trigger modal -->
+                        <a type='button' class='link-grey' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>
+                          Edit <i class='fa-solid fa-pen-to-square'></i>
+                        </a>
+
+                        <!-- Modal -->
+                        <div class='modal fade' id='staticBackdrop' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+                          <div class='modal-dialog'>
+                            <div class='modal-content'>
+                              <div class='modal-header'>
+                                <h1 class='modal-title fs-5' id='staticBackdropLabel'>Comments</h1>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                              </div>
+                              <div class='modal-body'>
+                              <form action='/Blog_php/update_comment.php' method='post'>
+                              <div class='mb-3'>
+                                <textarea class='form-control' name='comment' id='exampleFormControlTextarea1' rows='2'>$comment</textarea>
+                              </div>
+                              <div class='modal-footer'>
+                              <div class='text-end'>
+                                <input type='hidden' name='comment_id' value='<?php echo $comment_id; ?>'
+                                <button type='submit' class='btn btn-primary'>Comment</button>
+                                </div>
+                              </div>
+                            </form>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -130,13 +170,9 @@ include $root . "/common/header.php";
         </div>";
       } else {
         echo "
-    <a href='#!' class='link-grey'>Like<i class='fa-regular fa-heart'></i></i></a> •
+    <a href='#!' class='link-grey'><i class='fa-regular fa-heart'></i></i></a> •
                         <a href='#!' class='link-grey'>Translate</a>
                       </p>
-                      <div class='d-flex flex-row'>
-                        <i class='fas fa-star text-warning me-2'></i>
-                        <i class='far fa-check-circle' style='color: #aaa;'></i>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -149,9 +185,7 @@ include $root . "/common/header.php";
       echo "<h1>No comments!</h1>";
     }
   }
-
+  ?>
+  <?php include "common/footer.php";
 
   ?>
-</div>
-
-<?php include "common/footer.php"; ?>

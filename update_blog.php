@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_FILES['image']['error'] !== 4) {
         $image = $con->query("SELECT image_url from blogs WHERE blog_id=$id");
         $image = $image->fetch_assoc();
-        if ($image['image_url'] && file_exists($root.$image['image_url'])) {
-            unlink($root.$image['image_url']);
+        if ($image['image_url'] && file_exists($root . $image['image_url'])) {
+            unlink($root . $image['image_url']);
         }
         $image = $_FILES['image']['name'];
         $date = date("Y-m-d");
@@ -24,16 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "UPDATE blogs SET  title ='$title', content ='$content', category ='$category', updated_at ='$date', image_url ='$folder',
          description ='$description' where blog_id=$id";
-
-    }
-    else{
+    } else {
         $sql = "UPDATE blogs SET  title ='$title', content ='$content', category ='$category', updated_at ='$date', description ='$description' where blog_id=$id";
-        
-        
     }
     $update = $con->query($sql);
-}
-else{
+} else {
     echo "Post failed!";
 }
 header("Location: read.php?id=$id");

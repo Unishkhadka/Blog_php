@@ -6,7 +6,8 @@ include $root . "/common/header.php";
 
 $id=$_GET['id'];
 $sql = "DELETE FROM blogs where blog_id=$id";
-$delete = $con->query($sql);
+$comment = "DELETE FROM comments where blog_id=$id";
+$delete = $con->query($sql,$comment);
 
 if($delete){
     echo "Blog deleted.";
