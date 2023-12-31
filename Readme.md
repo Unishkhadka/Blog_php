@@ -22,20 +22,20 @@ To run this application, you need:
 1. Clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/YourUsername/BlogManagementSystem.git
+    git clone https://github.com/YourUsername/Blog_php.git
     ```
 
 2. Move into the project directory:
 
     ```bash
-    cd BlogManagementSystem
+    cd Blog_php
     ```
 
 3. **Database Setup:**
 
    - **Create a Database:**
      - Open your preferred database management tool (e.g., MySQL, phpMyAdmin).
-     - Create a new database and name it `blog_management`.
+     - Create a new database and name it `blog`.
 
    - **Create Tables:**
      - Run the SQL queries below to create the necessary tables:
@@ -88,7 +88,7 @@ To run this application, you need:
 
 4. Start your preferred web server, ensuring that it has PHP support.
 
-5. Open the application in your web browser. If you're running it locally, the URL might be something like `http://localhost/BlogManagementSystem`.
+5. Open the application in your web browser. If you're running it locally, the URL might be something like `http://localhost/Blog_php`.
 
 ## Usage
 
