@@ -150,7 +150,7 @@ include $root . "/common/header.php";
                   <small class='text-body-secondary'>Uploaded: $date</small>
                 </div>
                 <div class='ms-auto'>
-                <a type='button' href='/Blog_php/delete_blog.php?id=$blog_id' class='btn btn-sm btn-link'>Delete <i class=fa-solid fa-trash></i></a>
+                <a type='button' href='/Blog_php/delete_blog.php?id=$blog_id' class='btn btn-sm btn-link'>Delete <i class='fa-solid fa-trash'></i></a>
                 
                 <a type='button' href='/Blog_php/edit_blog.php?id=$blog_id' class='btn btn-sm btn-link'>Edit <i class='fa-solid fa-pen-to-square'></i></a>
                 

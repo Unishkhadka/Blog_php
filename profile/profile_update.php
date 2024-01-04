@@ -1,5 +1,7 @@
 <?php
-include "common/connection.php";
+$root = "C:/xampp/htdocs/Blog_php/";
+include $root . "/common/connection.php";
+include $root . "/common/authenticate.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullname = $_POST['fullname'];

@@ -24,7 +24,7 @@ include "common/header.php";
           while ($row = $result->fetch_assoc()) {
             $id = $row['category_id'];
             $category = $row['category'];
-            echo "<option value='$id'>$category</option>";
+            echo "<option>$category</option>";
           }
 
           // Free the result set
